@@ -21,9 +21,10 @@ tfidf_dataframe = pd.DataFrame(data=tfidf_matrix.toarray(), columns=sorted(tfidf
 print(f"El dataframe es\n {tfidf_dataframe}", end="\n\n")
 
 # Punto 5
-km = KMeans(n_clusters=648, n_init=100)
+km = KMeans(n_clusters=57, n_init=100)
 cluster = km.fit_predict(tfidf_dataframe)
 tfidf_dataframe["Grupo"] = cluster
 
 # Punto 6
 tfidf_dataframe.to_csv("tfidf_matrix_and_cluster.csv")
+print("El archivo tfidf_matrix_and_cluster.csv se ha creado con éxito")

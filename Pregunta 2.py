@@ -14,7 +14,7 @@ tfidf_data.drop(tfidf_data.columns[0], axis=1, inplace=True)
 print(f"El nuevo dataframe es\n {tfidf_data}", end="\n\n")
 
 # Punto 4
-pca = PCA(3)  # Cantidad de componentes imprecisa
+pca = PCA(20)  # Cantidad de componentes imprecisa
 pca.fit(tfidf_data)
 pca_projection = pca.transform(tfidf_data)
 
