@@ -14,7 +14,7 @@ tfidf_data.drop(tfidf_data.columns[0], axis=1, inplace=True)
 print(f"El nuevo dataframe es\n {tfidf_data}", end="\n\n")
 
 # Punto 4
-pca = PCA(20)  # Cantidad de componentes imprecisa
+pca = PCA(20)
 pca.fit(tfidf_data)
 pca_projection = pca.transform(tfidf_data)
 
@@ -29,9 +29,10 @@ pca_dataframe = pd.DataFrame(pca_projection, columns=[f"PCA {str(i)}" for i in r
 print(pca_dataframe)
 
 # Punto 8
-km = KMeans(n_clusters=648, n_init=100)
+km = KMeans(n_clusters=57, n_init=100)
 cluster = km.fit_predict(pca_dataframe)
 pca_dataframe["Grupo"] = cluster
 
 # Punto 9
 pca_dataframe.to_csv("pca_matrix_and_cluster.csv")
+print("El archivo pca_matrix_and_cluster.csv se ha creado con éxito")
