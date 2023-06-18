@@ -1,9 +1,9 @@
-import pandas as pd
+from pandas import DataFrame, read_csv
 from nltk.corpus import stopwords
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.cluster import KMeans
 
-data: pd.DataFrame = pd.read_csv("../res/smogon.csv")
+data: DataFrame = read_csv("../res/smogon.csv")
 stop_words: list[str] = stopwords.words("english")
 
 # Punto 1
@@ -17,11 +17,11 @@ print(f"El número total de tokens (vocabulario) es {len(tfidf_vectorizer.vocabu
 print(f"Los tokens son\n {sorted(tfidf_vectorizer.vocabulary_)}", end="\n\n")
 
 # Punto 4
-tfidf_dataframe = pd.DataFrame(data=tfidf_matrix.toarray(), columns=sorted(tfidf_vectorizer.vocabulary_))
+tfidf_dataframe: DataFrame = DataFrame(data=tfidf_matrix.toarray(), columns=sorted(tfidf_vectorizer.vocabulary_))
 print(f"El dataframe es\n {tfidf_dataframe}", end="\n\n")
 
 # Punto 5
-km = KMeans(n_clusters=57, n_init=100)
+km: KMeans = KMeans(n_clusters=57, n_init=100)
 cluster = km.fit_predict(tfidf_dataframe)
 tfidf_dataframe["Grupo"] = cluster
 
